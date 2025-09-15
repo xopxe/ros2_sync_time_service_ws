@@ -1,0 +1,37 @@
+{
+    "name": "ROS 2 Sync-Time",
+    "privileged": true,
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "workspaceFolder": "/sync_time_ws",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/sync_time_ws,type=bind",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "donjayamanne.python-extension-pack",
+                "eamodio.gitlens",
+                "ms-iot.vscode-ros"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "unix:0",
+        "RMW_IMPLEMENTATION": "rmw_zenoh_cpp",
+        "ROS_DOMAIN_ID": "0"
+    },
+    "runArgs": [
+        "--net=host",
+        "--pid=host",
+        "--ipc=host",
+        "-e",
+        "DISPLAY=${env:DISPLAY}"
+    ],
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.bash_history,target=/home/ubuntu/.bash_history,type=bind",
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+    ],
+    "postCreateCommand": "./.devcontainer/postCreateCommand.sh"
+}
