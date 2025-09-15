@@ -10,11 +10,15 @@ The protocol is structured as follows:
 
 1. The client sends a syncronization request.
     This is a message of type `std_msgs.msg.String` containing a token value. The default topic is `sync_time_request`.
-    
+
 1. The server responds with a message of type `sensor_msgs.msg.TimeReference`.
     The `time_ref` value contains the servers time stamp at arrival time of the request. The `source` field contains the token of the orignal request. The default topic is `sync_time_response`.
 
 With that response, the client has the four timestamps needed to compute the RTT and time offset as defined by NTP.
+
+## Client code
+
+Example client code for a microcontroller can be found in [picorosso-espidf](https://github.com/xopxe/picorosso-espidf/blob/main/src/sync_time.cpp).
 
 ## Deployment
 
