@@ -26,10 +26,55 @@ The reach of this protocol can be limited to the links of interest using Zenoh A
 
 ## Running
 
-You can use a native ROS 2 installation or the included Docker. Start with:
+If you have a native ROS 2 installation. Start with:
 
 ```sh
 ros2 run sync_time sync_time_node
+```
+
+You also can use the provided Docker image. You can do it directly from VSCode, or manually:
+
+### Build Docker image
+
+From this project directory call:
+
+```sh
+docker image build --rm -t ros2_sync_time:jazzy .devcontainer/
+```
+
+### Start Docker image
+
+```sh
+docker run --init --rm --user ubuntu \
+  --network=host -v $PWD:/sync_time_ws \
+  ros2_sync_time:jazzy
+```
+
+## Install as `systemd` service
+
+Edit `ros2_sync_time.service` file, set path to this directory in the ExecStart line (just after the `-v`). The file is setup to  start the Docker image. If you are running ROS 2 nativelly, change the `ExecStart` line.
+
+Then:
+
+```sh
+sudo cp -v ros2_sync_time.service /etc/systemd/system
+sudo systemctl enable ros2_sync_time.service
+sudo systemctl start ros2_sync_time.service
+```
+
+Verify it is working:
+
+```sh
+sudo systemctl status ros2_sync_time.service
+sudo journalctl -f -u ros2_sync_time.service
+```
+
+To uninstall:
+
+```sh
+sudo systemctl stop ros2_sync_time.service
+sudo systemctl disable ros2_sync_time.service
+sudo systemctl daemon-reload
 ```
 
 ## Authors and acknowledgment

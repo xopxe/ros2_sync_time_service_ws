@@ -60,3 +60,4 @@ RUN sudo apt-get update \
 #    && echo "export ZENOH_SESSION_CONFIG_URI=/sync_time_ws/zenoh_session_config.json5" >> ~/.bashrc
 
 CMD ["/bin/bash"]
+ENTRYPOINT [ "./sync_time_start.sh" ]

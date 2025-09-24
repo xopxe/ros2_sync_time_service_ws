@@ -28,10 +28,5 @@
         "-e",
         "DISPLAY=${env:DISPLAY}"
     ],
-    "mounts": [
-        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.bash_history,target=/home/ubuntu/.bash_history,type=bind",
-        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
-        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
-    ],
     "postCreateCommand": "./.devcontainer/postCreateCommand.sh"
 }

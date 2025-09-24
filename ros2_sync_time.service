@@ -1,0 +1,20 @@
+[Unit]
+Description=ROS2 Sync-Time provider
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=exec
+Restart=no
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=docker run --init --restart unless-stopped --name %n \
+  --user ubuntu --network=host \
+  -v /home/odroid/ros2_sync_time_service_ws:/sync_time_ws \
+  ros2_sync_time:jazzy
+ExecStop=/usr/bin/docker stop %n
+ExecStop=/usr/bin/docker rm %n
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target
