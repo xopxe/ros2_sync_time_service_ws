@@ -1,6 +1,6 @@
-# ROS2 time synchronization protocol
+# ROS 2 time synchronization protocol
 
-This a ROS2 node that helps provide time to embedded devices which dont't have a RTC or network connection to set own clocks. This is useful for microcontrollers using Pico-ROS connected through serial links.
+This a ROS 2 node that helps provide time to embedded devices which dont't have a RTC or network connection to set own clocks. This is useful for microcontrollers using Pico-ROS connected through serial links.
 
 The protocol itself is patterned after NTP.
 
