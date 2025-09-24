@@ -40,6 +40,9 @@ From this project directory call:
 
 ```sh
 docker image build --rm -t ros2_sync_time:jazzy .devcontainer/
+docker run -it --user ubuntu -v $PWD:/sync_time_ws \
+  --entrypoint /sync_time_ws/.devcontainer/postCreateCommand.sh \
+  ros2_sync_time:jazzy
 ```
 
 ### Start Docker image
