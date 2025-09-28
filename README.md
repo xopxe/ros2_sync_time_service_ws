@@ -41,8 +41,7 @@ From this project directory call:
 ```sh
 docker image build --rm -t ros2_sync_time:jazzy .devcontainer/
 docker run -it --user ubuntu -v $PWD:/sync_time_ws \
-  --entrypoint /sync_time_ws/.devcontainer/postCreateCommand.sh \
-  ros2_sync_time:jazzy
+  ros2_sync_time:jazzy .devcontainer/postCreateCommand.sh
 ```
 
 ### Start Docker image
@@ -50,12 +49,13 @@ docker run -it --user ubuntu -v $PWD:/sync_time_ws \
 ```sh
 docker run --init --rm --user ubuntu \
   --network=host -v $PWD:/sync_time_ws \
+  -e ROS_DOMAIN_ID=0 \
   ros2_sync_time:jazzy
 ```
 
 ## Install as `systemd` service
 
-Edit `ros2_sync_time.service` file, set path to this directory in the ExecStart line (just after the `-v`). The file is setup to  start the Docker image. If you are running ROS 2 nativelly, change the `ExecStart` line.
+Edit `ros2_sync_time.service` file, set path to this directory in the ExecStart line (just after the `-v`). The file is setup to  start the Docker image. If you are running ROS 2 nativelly, change the `ExecStart` line. You can also change the `ROS_DOMAIN_ID` to match your deployment.  
 
 Then:
 

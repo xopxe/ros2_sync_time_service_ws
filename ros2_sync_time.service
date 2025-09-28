@@ -11,6 +11,7 @@ ExecStartPre=-/usr/bin/docker rm %n
 ExecStart=docker run --init --restart unless-stopped --name %n \
   --user ubuntu --network=host \
   -v /home/odroid/ros2_sync_time_service_ws:/sync_time_ws \
+  -e ROS_DOMAIN_ID=0 \
   ros2_sync_time:jazzy
 ExecStop=/usr/bin/docker stop %n
 ExecStop=/usr/bin/docker rm %n

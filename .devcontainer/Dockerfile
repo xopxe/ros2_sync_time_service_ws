@@ -59,5 +59,4 @@ RUN sudo apt-get update \
 #RUN echo "export RMW_IMPLEMENTATION=rmw_zenoh_cpp" >> ~/.bashrc \
 #    && echo "export ZENOH_SESSION_CONFIG_URI=/sync_time_ws/zenoh_session_config.json5" >> ~/.bashrc
 
-CMD ["/bin/bash"]
-ENTRYPOINT [ "/sync_time_ws/sync_time_start.sh" ]
+CMD [ "/sync_time_ws/sync_time_start.sh" ]
