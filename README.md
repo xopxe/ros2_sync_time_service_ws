@@ -1,6 +1,6 @@
 # ROS 2 time synchronization protocol
 
-This a ROS 2 node that helps provide time to embedded devices which dont't have a RTC or network connection to set own clocks. This is useful for microcontrollers using Pico-ROS connected through serial links.
+This is a ROS 2 node that helps provide time to embedded devices that don't have an RTC or network connection to set their clocks. This is useful for microcontrollers using Pico-ROS connected through serial links.
 
 The protocol itself is patterned after NTP.
 
@@ -32,7 +32,7 @@ If you have a native ROS 2 installation. Start with:
 ros2 run sync_time sync_time_node
 ```
 
-You also can use the provided Docker image. You can do it directly from VSCode, or manually:
+You can also use the provided Docker image. You can do it directly from VSCode, or manually:
 
 ### Build Docker image
 
@@ -55,7 +55,7 @@ docker run --init --rm --user ubuntu \
 
 ## Install as `systemd` service
 
-Edit `ros2_sync_time.service` file, set path to this directory in the ExecStart line (just after the `-v`). The file is setup to  start the Docker image. If you are running ROS 2 nativelly, change the `ExecStart` line. You can also change the `ROS_DOMAIN_ID` to match your deployment.  
+Edit `ros2_sync_time.service` file, set path to this directory in the ExecStart line (just after the `-v`). The file is set up to  start the Docker image. If you are running ROS 2 natively, change the `ExecStart` line. You can also change the `ROS_DOMAIN_ID` to match your deployment.  
 
 Then:
 
