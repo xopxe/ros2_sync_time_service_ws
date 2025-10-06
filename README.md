@@ -16,6 +16,21 @@ The protocol is structured as follows:
 
 With that response, the client has the four timestamps needed to compute the RTT and time offset as defined by NTP.
 
+## Instalation
+
+This worskpace pulls the service package as a submodule. Clone this workspace as:
+
+```sh
+git clone --recurse-submodules https://github.com/xopxe/oruga_ws.git
+```
+
+Alternatively, you can update the submodule from inside the cloned repo:
+
+```sh
+git submodule init
+got submodule update
+```
+
 ## Client code
 
 Example client code for a microcontroller can be found in [picorosso-espidf](https://github.com/xopxe/picorosso-espidf/blob/main/src/sync_time.cpp).
